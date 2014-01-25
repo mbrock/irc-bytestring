@@ -93,7 +93,7 @@ isUserChar c = isNonWhite c && c /= '@'
 
 user = takeWhile1 isUserChar <?> "username"
 
-isHostChar c = isAlphaNum c || c == '.' || c == '-'
+isHostChar c = isAlphaNum c || c `elem` ".-/"
 
 host = cons
        <$> satisfy isAlpha
