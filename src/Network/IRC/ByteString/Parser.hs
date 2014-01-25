@@ -93,11 +93,9 @@ isUserChar c = isNonWhite c && c /= '@'
 
 user = takeWhile1 isUserChar <?> "username"
 
-isHostChar c = isAlphaNum c || c `elem` ".-/"
-
 host = cons
-       <$> satisfy isAlpha
-       <*> takeWhile1 isHostChar
+       <$> satisfy isAlphaNum
+       <*> takeWhile1 isNonWhite
        <?> "hostname"
 
 prefix = char ':' *> eitherP (userInfo <* end) (serverName <* end)
