@@ -85,9 +85,7 @@ isNickChar c = isAlphaNum c || isSpecial c
 isSpecial c = c == '-' || c == '[' || c == ']' || c == '\\' || c == '`'
               || c == '^' || c == '{' || c == '}' || c == '_'
 
-nick = BS.cons <$> satisfy isAlpha
-               <*> takeWhile isNickChar
-               <?> "nick"
+nick = takeWhile isNickChar <?> "nick"
 
 isUserChar c = isNonWhite c && c /= '@'
 
